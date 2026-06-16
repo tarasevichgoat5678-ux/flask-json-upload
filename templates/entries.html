@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Все записи - Flask Project{% endblock %}
+
+{% block content %}
+<h1>Все записи</h1>
+
+<div class="mt-4">
+    <table id="entries-table" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry.id }}</td>
+                <td>{{ entry.name }}</td>
+                <td>{{ entry.date.strftime('%Y-%m-%d %H:%M') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#entries-table').DataTable();
+});
+</script>
+{% endblock %}

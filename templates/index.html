@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - Flask Project{% endblock %}
+
+{% block content %}
+<h1>Главная страница</h1>
+<p class="lead">Добро пожаловать в проект Flask для загрузки JSON данных.</p>
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Загрузить JSON</h5>
+                <p class="card-text">Загрузите JSON файл с данными для валидации и сохранения.</p>
+                <a href="/upload" class="btn btn-primary">Перейти к загрузке</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Все записи</h5>
+                <p class="card-text">Просмотреть все сохранённые записи в таблице.</p>
+                <a href="/entries" class="btn btn-secondary">Просмотреть</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

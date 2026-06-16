@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Загрузить JSON - Flask Project{% endblock %}
+
+{% block content %}
+<h1>Загрузить JSON файл</h1>
+
+{# Блок для вывода множественных ошибок валидации #}
+{% if errors %}
+<div class="alert alert-danger mt-3">
+    <strong>Обнаружены ошибки при валидации:</strong>
+    <ul class="mb-0 mt-2">
+        {% for err in errors %}
+            <li>{{ err }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{# Резервный блок для одиночных системных ошибок #}
+{% if error %}
+<div class="alert alert-danger mt-3">
+    <strong>Ошибка:</strong> {{ error }}
+</div>
+{% endif %}
+
+<div class="mt-4">
+    <h5>Формат JSON файла:</h5>
+    <pre class="bg-light p-3">
+[
+    {
+        "name": "random string less than 50 characters",
+        "date": "YYYY-MM-DD_HH:mm"
+    },
+    ...
+]
+</pre>
+
+    <h5 class="mt-4">Правила валидации:</h5>
+    <ul>
+        <li>Другие ключи игнорировать</li>
+        <li>Имя должно быть &lt; 50 символов</li>
+        <li>Дата в формате YYYY-MM-DD_HH:mm</li>
+        <li>Ключи name и date обязательны</li>
+    </ul>
+</div>
+
+<form method="POST" enctype="multipart/form-data" class="mt-4">
+    <div class="mb-3">
+        <label for="file" class="form-label">Выберите JSON файл:</label>
+        <input type="file" class="form-control" id="file" name="file" accept=".json" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Загрузить</button>
+</form>
+{% endblock %}

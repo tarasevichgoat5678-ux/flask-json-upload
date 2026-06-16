@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block title %}Про сайт - Flask JSON Upload{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Про сайт</h1>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>📌 Описание проекта</h5>
+            </div>
+            <div class="card-body">
+                <p>
+                    Это проект для загрузки и валидации JSON файлов с сохранением данных в базу информации.
+                    Проект разработан для демонстрации навыков backend-разработки на Flask.
+                </p>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>🛠️ Технологический стек</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li><strong>Python 3.8+</strong> — язык программирования</li>
+                    <li><strong>Flask 3.0</strong> — веб-фреймворк</li>
+                    <li><strong>Flask-SQLAlchemy 3.1</strong> — ORM для работы с базой данных</li>
+                    <li><strong>Pydantic 2.x</strong> — Валидация и преобразование JSON-данных</li>
+                    <li><strong>SQLite</strong> — база данных (для тестов)</li>
+                    <li><strong>PostgreSQL</strong> — база данных (для production)</li>
+                    <li><strong>Bootstrap 5.3</strong> — CSS фреймворк для UI</li>
+                    <li><strong>DataTables</strong> — плагин для таблиц с поиском и сортировкой</li>
+                    <li><strong>Jinja2</strong> — Шаблонизатор для генерации HTML-страниц</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>📋 Функции сайта</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>
+                        <strong>Загрузка JSON файлов</strong> — форма для выбора и загрузки JSON файла с данными
+                    </li>
+                    <li>
+                        <strong>Валидация данных</strong> — проверка формата JSON, длины имени (&lt; 50 символов), формата даты (YYYY-MM-DD_HH:mm)
+                    </li>
+                    <li>
+                        <strong>Сохранение в БД</strong> — сохранение валидных записей в PostgreSQL/SQLite таблицу
+                    </li>
+                    <li>
+                        <strong>Просмотр записей</strong> — таблица с всеми записями с использованием DataTables (поиск, сортировка, pagination)
+                    </li>
+                    <li>
+                        <strong>Обработка ошибок</strong> — уведомление пользователя о ошибках валидации с детальным описанием
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>📝 Формат JSON файла</h5>
+            </div>
+            <div class="card-body">
+                <pre class="bg-light p-3">
+[
+    {
+        "name": "random string less than 50 characters",
+        "date": "YYYY-MM-DD_HH:mm"
+    },
+    ...
+]
+</pre>
+
+                <h6 class="mt-3">Правила валидации:</h6>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Правило</th>
+                            <th>Описание</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>JSON должен быть массивом</td>
+                            <td>Все данные в формате списка объектов</td>
+                        </tr>
+                        <tr>
+                            <td>Ключи обязательны</td>
+                            <td>Наличие ключей <code>name</code> и <code>date</code> в каждом объекте</td>
+                        </tr>
+                        <tr>
+                            <td>Длина name &lt; 50</td>
+                            <td>Имя должно быть строго меньше 50 символов</td>
+                        </tr>
+                        <tr>
+                            <td>Формат даты</td>
+                            <td>Дата в формате <code>YYYY-MM-DD_HH:mm</code> (например: <code>2024-01-15_14:30</code>)</td>
+                        </tr>
+                        <tr>
+                            <td>Другие ключи</td>
+                            <td>Игнорируются, сохраняются только <code>name</code> и <code>date</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>🗂️ Структура проекта</h5>
+            </div>
+            <div class="card-body">
+                <pre class="bg-light p-3">
+flask_json_project/
+├── app.py              # Точка входа для запуска приложения
+├── config.py           # Настройки приложения и базы данных
+├── extensions.py       # Инициализация расширений Flask (SQLAlchemy)
+├── models.py           # Модели базы данных SQLAlchemy
+├── schemas.py          # Схемы валидации Pydantic
+├── routes.py           # Маршруты (Blueprint) для обработки запросов
+├── requirements.txt    # зависимости Python
+├── .env                # файл конфигурации переменных окружения
+├── data.db            # SQLite база данных (создается автоматически)
+└── templates/
+    ├── base.html       # Базовый темплейт с навигацией
+    ├── index.html      # Главная страница
+    ├── upload.html     # Форма загрузки JSON
+    ├── entries.html    # Таблица всех записей
+    └── about.html      # Про сайт (эта страница)
+</pre>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>👤 Автор - Тарасевич Владислав</h5>
+            </div>
+            <div class="card-body">
+                <p>
+                    Проект разработан для демонстрации навыков backend-разработки на Flask.
+                </p>
+                <p class="text-muted">
+                    Стек: Python, Flask, SQLAlchemy, PostgreSQL, SQLite, Bootstrap, DataTables, Pydentic
+                </p>
+            </div>
+        </div>
+
+        <a href="/" class="btn btn-primary mt-4">← На главную</a>
+    </div>
+</div>
+{% endblock %}
